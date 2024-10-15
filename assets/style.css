@@ -1,0 +1,116 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --bg_main__900:#141c2f;
+    --color_text__50:#f1f7fd;
+    --bg_main__800:#33529a59;
+    --bg_main__700:#3864bd;
+    --bg_main__600:##4277ce;
+    --bg_main__500:#5692db;
+    --bg_main__400:#77aee3;
+    --bg_main__300:#a3cbed;
+    --bg_main__200:#c8dff5;
+    --bg_main__100:#e0edf9;
+    
+}
+body{
+    font-family: "Roboto", sans-serif; 
+    background-color:var(--bg_main__900);
+    color: var(--color_text__50);   
+    font-size: 18px;  
+}
+
+.container{
+    width: 85%;
+    margin: 0 auto;
+
+    /* outline: 1px solid white; */
+}
+.hero__header{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.hero__dark__btn{
+    color: var(--color_text__50);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    letter-spacing: 3px;
+    font-size: .8rem;
+}
+.hero__figure{
+    width: 25px;
+    height: 25px;
+    /* outline: auto; */
+}
+.hero__img{
+    /* outline: auto; */
+
+    width: 100%;
+    height: 100%;
+}
+
+.main__form{
+    background-color: var(--bg_main__800);
+}
+.main__form{
+    border-radius: .8rem;
+}
+
+.form__search{
+    
+    height: 50px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.form__figure{
+    width: 30px;
+    height: 30px;
+}
+.form__icon{
+    width: 100%;
+    height: 100%;
+}
+.form__search__input{
+
+    padding: 15px 0 ;
+
+    background-color: transparent;
+    color: var(--bg_main__300);
+    border: none;
+}
+.form__search__input:focus{
+    outline: none;
+}
+.form__search__input::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+}
+.form__search__input::placeholder{
+    color: var(--bg_main__100);
+}
+.form__btn{
+    background-color: #5692db;
+    color: var(--color_text__50);
+    padding: 10px 14px;
+    font-weight: bold;
+    border-radius: .4rem;
+    border: none;
+}
+.main__content{
+    margin: 1.5rem 0;
+}
+
+
+
