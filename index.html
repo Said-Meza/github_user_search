@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
-    <link rel="icon" href="/ruta/a/tu/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/assets/img/dragon.svg" type="image/x-icon" />
     <title>User Search GitHub</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
 
         <section class="main__form">
 
-                <form class="form__form" action="#">
+                <form class="form__form" method="post" >
 
                     <div class="form__search">
                     
@@ -41,7 +41,7 @@
                             <img class="form__icon" src="./assets/img/lupa.svg" alt="Search">
                         </figure>
                     
-                        <input class="form__search__input" type="search" name="txtsearch" id="txtsearch" placeholder="Search GitHub username...">
+                        <input class="form__search__input" type="search" name="txtsearch" id="txtsearch" autocomplete="off" placeholder="Search GitHub username...">
                     
                         <button class="form__btn">Search</button>
                     
@@ -56,23 +56,23 @@
             <section class="main__user container">
 
                 <figure class="user__figure">
-                    <img class="user__img" src="/assets/img/perfil.svg" alt="user">
+                    <img class="user__img" id="user_img" src="/assets/img/792435-min.jpg" alt="user">
                 </figure>
 
                 <section class="user__inf">
                     
                     <div class="user__inf__name">
-                        <h3 class="inf__name">the best</h3>
-                        <h5 class="inf__username">username</h5>
+                        <h3 class="inf__name" id="inf__name" > Jardani Jovanovich</h3>
+                        <h5 class="inf__username" id="username">Jonh Wick</h5>
                     </div>
 
-                    <p class="user__date"> joined abril 2020</p>
+                    <p class="user__date" id="date_start"> joined Octubre 2014</p>
                 
                 </section>
 
                 <section class="main__bio container">
-                     <p class="main__paragraph">Te enseño Programación y Desarrollo Web. 
-                        Creador de contenido en Twitch y YouTube.</p>
+                     <p class="main__paragraph" id="main__paragraph">"People keep asking if I'm back, and I haven't really had an answer. But now, yeah, I'm thinking I'm back."
+                    </p>
                 </section>
 
             </section>
@@ -81,17 +81,17 @@
 
                     <div class="conteiner">
                         <h3 class="data__inf">Repos</h3>
-                        <h2 class="data__number">33</h2>
+                        <h2 class="data__number" id="repos">33</h2>
                     </div>
 
                     <div class="conteiner">
                         <h3 class="data__inf">Followers</h3>
-                        <h2 class="data__number">3456</h2>
+                        <h2 class="data__number" id="followers">3456</h2>
                     </div>
 
                     <div class="conteiner">
                         <h3 class="data__inf">Following</h3>
-                        <h2 class="data__number">33</h2>
+                        <h2 class="data__number" id="followings">33</h2>
                     </div>
                 
                 </section>
@@ -108,7 +108,7 @@
                             <img class="more__img" src="./assets/img/gps.svg" alt="location">
                         </figure>
 
-                        <p class="more__text">san francisco</p>
+                        <p class="more__text" id="gps">Bielorrusia</p>
                     
                     </div>
                     
@@ -116,7 +116,7 @@
                         <figure class="more__figure">
                             <img class="more__img" src="./assets/img/enlace.svg" alt="location">
                         </figure>
-                        <p class="more__text">htps://github.blog</p>
+                        <a href="#" class="more__text more__text__a" id="github">htps://github.blog</a>
                     </div>
 
                 </div>
@@ -128,14 +128,14 @@
                         <figure class="more__figure">
                             <img class="more__img" src="./assets/img/x.svg" alt="location">
                         </figure>
-                        <p class="more__text">not available</p>
+                        <p class="more__text" id="x">@Jonh_Wick</p>
                     </div>
                     
                     <div class="more__inf">
                         <figure class="more__figure">
                             <img class="more__img" src="./assets/img/home.svg" alt="location">
                         </figure>
-                        <p class="more__text">@github</p>
+                        <a href="#" class="more__text more__text__a" id="home">@Blog</a>
                     </div>
 
                 </div>
