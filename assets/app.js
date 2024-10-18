@@ -1,3 +1,4 @@
+import {light,dark} from './helpers/darkmode.js'
 const d=document,
     $input=d.getElementById("txtsearch"),
     $name=d.getElementById("inf__name"),
@@ -11,26 +12,10 @@ const d=document,
     $github=d.getElementById("github"),
     $x=d.getElementById("x"),
     $home=d.getElementById("home"),
-    $avatar=d.getElementById("user_img")
+    $avatar=d.getElementById("user_img"),
+    $modetxt=d.getElementById("modetxt");
 let darkmode=false;
     
-
-function light(){
-    d.documentElement.style.setProperty('--bg_main','#f5e9e9')
-    d.documentElement.style.setProperty('--bg_second','#ffffff')
-    d.documentElement.style.setProperty('--txt_main','#292929')
-    d.documentElement.style.setProperty('--bg__btn','#bdbdbd')
-    d.documentElement.style.setProperty('--bg_main__300','#525252')
-
-}
-
-function dark(){
-    d.documentElement.style.setProperty('--bg_main','#141c2f')
-    d.documentElement.style.setProperty('--bg_second','#33529a59')
-    d.documentElement.style.setProperty('--txt_main','#f1f7fd')
-    d.documentElement.style.setProperty('--bg__btn','#3864bd')
-    d.documentElement.style.setProperty('--bg_main__300','#a3cbed')
-}
 
 
 d.addEventListener("click",(e)=>{
@@ -41,8 +26,11 @@ d.addEventListener("click",(e)=>{
 
         if(darkmode){
             light()
+            $modetxt.textContent="DARK";
         }else{
             dark()
+            $modetxt.textContent="LIGHT"
+
         }
 
     }

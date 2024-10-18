@@ -5,4 +5,4 @@
 - Dark mode not working
 
 ## Version 1.1.0
-- Dark mode working now
+- Dark mode working now note:added new folder to darkmode
