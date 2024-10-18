@@ -1,103 +1,95 @@
-import {light,dark} from './helpers/darkmode.js'
-const d=document,
-    $input=d.getElementById("txtsearch"),
-    $name=d.getElementById("inf__name"),
-    $username=d.getElementById("username"),
-    $date=d.getElementById("date_start"),
-    $bio=d.getElementById("main__paragraph"),
-    $repos=d.getElementById("repos"),
-    $followers=d.getElementById("followers"),
-    $followings=d.getElementById("followings"),
-    $gps=d.getElementById("gps"),
-    $github=d.getElementById("github"),
-    $x=d.getElementById("x"),
-    $home=d.getElementById("home"),
-    $avatar=d.getElementById("user_img"),
-    $modetxt=d.getElementById("modetxt");
-let darkmode=false;
-    
+import { light, dark } from './helpers/darkmode.js'
+const d = document,
+    $input = d.getElementById("txtsearch"),
+    $name = d.getElementById("inf__name"),
+    $username = d.getElementById("username"),
+    $date = d.getElementById("date_start"),
+    $bio = d.getElementById("main__paragraph"),
+    $repos = d.getElementById("repos"),
+    $followers = d.getElementById("followers"),
+    $followings = d.getElementById("followings"),
+    $gps = d.getElementById("gps"),
+    $github = d.getElementById("github"),
+    $x = d.getElementById("x"),
+    $home = d.getElementById("home"),
+    $avatar = d.getElementById("user_img"),
+    $modetxt = d.getElementById("modetxt");
+let darkmode = false;
 
-
-d.addEventListener("click",(e)=>{
-    if(e.target.matches(".hero__dark__btn") || e.target.matches(".hero__span")||e.target.matches(".hero__img")){
+d.addEventListener("click", (e) => {
+    if (e.target.matches(".hero__dark__btn") || e.target.matches(".hero__span") || e.target.matches(".hero__img")) {
         e.preventDefault();
         // console.log("di click en dark mode")
-        darkmode=!darkmode;
+        darkmode = !darkmode;
 
-        if(darkmode){
-            light()
-            $modetxt.textContent="DARK";
-        }else{
-            dark()
-            $modetxt.textContent="LIGHT"
-
+        if (darkmode) {
+            light();
+            $modetxt.textContent = "DARK";
         }
-
+        else {
+            dark();
+            $modetxt.textContent = "LIGHT"
+        }
     }
-
-   
 })
 
-d.addEventListener("submit",async (e)=>{
-   e.preventDefault()
+d.addEventListener("submit", async (e) => {
+    e.preventDefault()
 
-   if (!e.target.matches(".form__form")) {
+    if (!e.target.matches(".form__form")) {
         return;
-   } 
+    }
 
-   if(e.target.matches(".form__form")){
-       
-        if(e.target.txtsearch.value===null || e.target.txtsearch.value===""){
+    if (e.target.matches(".form__form")) {
+
+        if (e.target.txtsearch.value === null || e.target.txtsearch.value === "") {
             return;
         }
-        else
-        {
-
-            let url=`https://api.github.com/users/${e.target.txtsearch.value}`;
+        else {
+            let url = `https://api.github.com/users/${e.target.txtsearch.value}`;
 
             try {
                 const res = await fetch(url);
                 const data = await res.json();
 
-                if(!res.ok){
+                if (!res.ok) {
                     throw { status: res.status, statusText: res.statusText }
                 }
 
-                let date= new Date(data.created_at)
+                let date = new Date(data.created_at)
+                let fecha = date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long' })
 
-                let fecha = date.toLocaleDateString('es-ES',{year: 'numeric', month: 'long'})
-
-                $avatar.src=`${data.avatar_url?(data.avatar_url):("/assets/img/perfil.svg")} `;
-                $name.textContent=`${data.name}`;
-                $username.textContent=`${data.login}`;
-                $date.textContent=`Joined ${fecha}`;
-                $bio.textContent=`${data.bio?(data.bio):("Not Text")}`;
-                $repos.textContent=`${data.public_repos}`;
-                $followers.textContent=`${data.followers}`;
-                $followings.textContent=`${data.following}`;
-                $gps.textContent=`${data.location?(data.location):("Not Inf")}`;
-                $x.textContent=`${data.twitter_username?(`@${data.twitter_username}`):("Not Account")}`;
-                $github.href=`${data.html_url?(data.html_url):"#"}`;
-                $home.href=`${data.blog?(data.blog):("#")}`;
+                $avatar.src = `${data.avatar_url ? (data.avatar_url) : ("/assets/img/perfil.svg")} `;
+                $name.textContent = `${data.name}`;
+                $username.textContent = `${data.login}`;
+                $date.textContent = `Joined ${fecha}`;
+                $bio.textContent = `${data.bio ? (data.bio) : ("Not Text")}`;
+                $repos.textContent = `${data.public_repos}`;
+                $followers.textContent = `${data.followers}`;
+                $followings.textContent = `${data.following}`;
+                $gps.textContent = `${data.location ? (data.location) : ("Not Inf")}`;
+                $x.textContent = `${data.twitter_username ? (`@${data.twitter_username}`) : ("Not Account")}`;
+                $github.href = `${data.html_url ? (data.html_url) : "#"}`;
+                $home.href = `${data.blog ? (data.blog) : ("#")}`;
 
 
             } catch (err) {
 
-               let message= err.statusText || "ocurrio un error";
-               $name.insertAdjacentHTML(
-                "afterend",
-                `<p><b>Error ${err.status}: ${message}</b></p>`
-              );
+                let message = err.statusText || "ocurrio un error";
+                $name.insertAdjacentHTML(
+                    "afterend",
+                    `<p><b>Error ${err.status}: ${message}</b></p>`
+                );
             }
 
-            $input.value="";    
-                
-    
+            $input.value = "";
+
+
         }
 
-        
-     }
- 
+
+    }
+
 })
 
 // api para consumir
