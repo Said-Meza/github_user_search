@@ -6,3 +6,6 @@
 
 ## Version 1.1.0
 - Dark mode working now note:added new folder to darkmode
+
+# version 2.0.0
+- added try-catch to fetch and modified the error the Api

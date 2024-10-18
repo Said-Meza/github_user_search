@@ -38,7 +38,7 @@ d.addEventListener("click",(e)=>{
    
 })
 
-d.addEventListener("submit",(e)=>{
+d.addEventListener("submit",async (e)=>{
    e.preventDefault()
 
    if (!e.target.matches(".form__form")) {
@@ -55,32 +55,41 @@ d.addEventListener("submit",(e)=>{
 
             let url=`https://api.github.com/users/${e.target.txtsearch.value}`;
 
-            fetch(url)
-                .then(res => (res.ok) ? res.json() : Promise.reject({
-                    err: "fallo la api", code: 404
-                }))
-                .then(data => {
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
 
-                    let date= new Date(data.created_at)
+                if(!res.ok){
+                    throw { status: res.status, statusText: res.statusText }
+                }
 
-                    let fecha = date.toLocaleDateString('es-ES',{year: 'numeric', month: 'long'})
+                let date= new Date(data.created_at)
 
-                    $avatar.src=`${data.avatar_url?(data.avatar_url):("/assets/img/perfil.svg")} `;
-                    $name.textContent=`${data.name}`;
-                    $username.textContent=`${data.login}`;
-                    $date.textContent=`Joined ${fecha}`;
-                    $bio.textContent=`${data.bio?(data.bio):("Not Text")}`;
-                    $repos.textContent=`${data.public_repos}`;
-                    $followers.textContent=`${data.followers}`;
-                    $followings.textContent=`${data.following}`;
-                    $gps.textContent=`${data.location?(data.location):("Not Inf")}`;
-                    $x.textContent=`${data.twitter_username?(`@${data.twitter_username}`):("Not Account")}`;
-                    $github.href=`${data.html_url?(data.html_url):"#"}`;
-                    $home.href=`${data.blog?(data.blog):("#")}`;
+                let fecha = date.toLocaleDateString('es-ES',{year: 'numeric', month: 'long'})
 
-                })
+                $avatar.src=`${data.avatar_url?(data.avatar_url):("/assets/img/perfil.svg")} `;
+                $name.textContent=`${data.name}`;
+                $username.textContent=`${data.login}`;
+                $date.textContent=`Joined ${fecha}`;
+                $bio.textContent=`${data.bio?(data.bio):("Not Text")}`;
+                $repos.textContent=`${data.public_repos}`;
+                $followers.textContent=`${data.followers}`;
+                $followings.textContent=`${data.following}`;
+                $gps.textContent=`${data.location?(data.location):("Not Inf")}`;
+                $x.textContent=`${data.twitter_username?(`@${data.twitter_username}`):("Not Account")}`;
+                $github.href=`${data.html_url?(data.html_url):"#"}`;
+                $home.href=`${data.blog?(data.blog):("#")}`;
 
-                .catch(err =>  {alert("no existe tu busqueda" + err.code)})
+
+            } catch (err) {
+
+               let message= err.statusText || "ocurrio un error";
+               $name.insertAdjacentHTML(
+                "afterend",
+                `<p><b>Error ${err.status}: ${message}</b></p>`
+              );
+            }
+
             $input.value="";    
                 
     
